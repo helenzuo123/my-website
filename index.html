@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelenZuo's Webpage</title>
+    <style>
+        /* This section controls how the page looks */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables - Easy way to store colors that we can change */
+        :root {
+            /* Default Purple Theme */
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #667eea;
+            --text-color: #333;
+            --bg-color: white;
+            --skill-bg: #f4f4f4;
+            --contact-bg: #f9f9f9;
+        }
+
+        /* THEME: Blue Ocean */
+        body.theme-blue {
+            --primary-color: #2193b0;
+            --secondary-color: #6dd5ed;
+            --accent-color: #2193b0;
+        }
+
+        /* THEME: Green Forest */
+        body.theme-green {
+            --primary-color: #56ab2f;
+            --secondary-color: #a8e063;
+            --accent-color: #56ab2f;
+        }
+
+        /* THEME: Pink Sunset */
+        body.theme-pink {
+            --primary-color: #f857a6;
+            --secondary-color: #ff5858;
+            --accent-color: #f857a6;
+        }
+
+        /* THEME: Orange Fire */
+        body.theme-orange {
+            --primary-color: #f46b45;
+            --secondary-color: #eea849;
+            --accent-color: #f46b45;
+        }
+
+        /* THEME: Dark Mode */
+        body.theme-dark {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #8b9aff;
+            --text-color: #e0e0e0;
+            --bg-color: #2a2a2a;
+            --skill-bg: #3a3a3a;
+            --contact-bg: #333333;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            transition: all 0.5s ease;
+        }
+
+        /* Animated Gradient - Makes background move! */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-color);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        section {
+            padding: 40px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            transition: all 0.5s ease;
+        }
+
+        .about-text {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: var(--skill-bg);
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.5s ease;
+        }
+
+        .contact-info {
+            background: var(--contact-bg);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: all 0.5s ease;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+        }
+
+        /* Download Button Styling */
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Loading state for button */
+        .download-btn.loading {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
+        /* Theme Switcher Styling - Compact Version */
+        .theme-switcher {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        body.theme-dark .theme-switcher {
+            background: rgba(50, 50, 50, 0.9);
+        }
+
+        .theme-switcher h3 {
+            margin: 0 0 5px 0;
+            font-size: 11px;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .theme-buttons {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .theme-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+            border-color: #333;
+        }
+
+        .theme-btn.active {
+            border-color: #333;
+            box-shadow: 0 0 0 1px white, 0 0 0 3px #333;
+        }
+
+        body.theme-dark .theme-btn:hover,
+        body.theme-dark .theme-btn.active {
+            border-color: white;
+        }
+
+        body.theme-dark .theme-btn.active {
+            box-shadow: 0 0 0 1px #333, 0 0 0 3px white;
+        }
+
+        .theme-btn-purple { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .theme-btn-blue { background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%); }
+        .theme-btn-green { background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%); }
+        .theme-btn-pink { background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%); }
+        .theme-btn-orange { background: linear-gradient(135deg, #f46b45 0%, #eea849 100%); }
+        .theme-btn-dark { background: linear-gradient(135deg, #434343 0%, #000000 100%); }
+
+        /* Toggle Dark Mode Button - Compact */
+        .dark-mode-toggle {
+            width: 100%;
+            padding: 6px 8px;
+            border: 2px solid var(--accent-color);
+            background: white;
+            color: var(--accent-color);
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 3px;
+        }
+
+        body.theme-dark .dark-mode-toggle {
+            background: #2a2a2a;
+            color: white;
+        }
+
+        .dark-mode-toggle:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Music Player Styling - Simple Icon Only */
+        .music-player {
+            display: inline-block;
+            margin-left: 20px;
+            vertical-align: middle;
+        }
+
+        /* Beautiful Music Icon Button - Next to title */
+        .music-icon-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            animation: none;
+        }
+
+        .music-icon-btn:hover {
+            transform: scale(1.15);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .music-icon-btn:active {
+            transform: scale(1.05);
+        }
+
+        /* Rotation animation when music is playing */
+        .music-icon-btn.rotating {
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Pulsing glow effect when playing */
+        .music-icon-btn.rotating::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* Hide the old control panel completely */
+        .music-controls {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Switcher Panel - Top right corner -->
+    <div class="theme-switcher">
+        <h3>🎨 Themes</h3>
+        <div class="theme-buttons">
+            <button class="theme-btn theme-btn-purple active" onclick="changeTheme('purple')" title="Purple"></button>
+            <button class="theme-btn theme-btn-blue" onclick="changeTheme('blue')" title="Blue Ocean"></button>
+            <button class="theme-btn theme-btn-green" onclick="changeTheme('green')" title="Green Forest"></button>
+            <button class="theme-btn theme-btn-pink" onclick="changeTheme('pink')" title="Pink Sunset"></button>
+            <button class="theme-btn theme-btn-orange" onclick="changeTheme('orange')" title="Orange Fire"></button>
+        </div>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+            🌙 Dark Mode
+        </button>
+    </div>
+
+    <!-- This is the main container for the webpage -->
+    <div class="container">
+
+        <!-- Header section with your name and title -->
+        <header>
+            <h1>
+                Helen Zuo
+                <!-- Music Player - Beautiful icon next to name -->
+                <span class="music-player">
+                    <!-- Hidden audio element -->
+                    <audio id="backgroundMusic" loop>
+                        <!-- Using a more reliable free music source -->
+                        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+                        Your browser does not support audio.
+                    </audio>
+                    <!-- Music Icon - Click to play/pause -->
+                    <button class="music-icon-btn" id="musicIconBtn" onclick="toggleMusic()" title="Click to play music">
+                        🎧
+                    </button>
+                </span>
+            </h1>
+            <p>Aspiring Developer | Learner | Creator</p>
+        </header>
+
+        <!-- About Me section -->
+        <section>
+            <h2>About Me</h2>
+            <p class="about-text">
+                Hi! I'm learning to code and building my skills in web development.
+                I'm passionate about creating things and solving problems through technology.
+                This is my first personal webpage, and I'm excited to continue learning and growing!
+            </p>
+            <p class="about-text">
+                I believe in continuous learning and am always looking for new challenges.
+                My goal is to build my own products and make a positive impact through code.
+            </p>
+        </section>
+
+        <!-- Skills section -->
+        <section>
+            <h2>Skills & Learning</h2>
+            <div class="skills">
+                <div class="skill-item">
+                    <h3>HTML</h3>
+                    <p>Learning the structure of web pages</p>
+                </div>
+                <div class="skill-item">
+                    <h3>CSS</h3>
+                    <p>Styling and design fundamentals</p>
+                </div>
+                <div class="skill-item">
+                    <h3>JavaScript</h3>
+                    <p>Starting with programming basics</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Problem Solving</h3>
+                    <p>Growing my logical thinking</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact section -->
+        <section>
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Helen Zuo. Built with passion and determination.</p>
+        </footer>
+
+    </div>
+
+    <!-- Download Button - Floats in bottom-right corner -->
+    <button class="download-btn" id="downloadBtn" onclick="downloadProfile()">
+        📥 Download Profile
+    </button>
+
+    <!-- html2canvas library - converts HTML to image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- JavaScript code to handle download -->
+    <script>
+        function downloadProfile() {
+            // Get the button and container elements
+            const button = document.getElementById('downloadBtn');
+            const container = document.querySelector('.container');
+
+            // Add loading state to button
+            button.classList.add('loading');
+            button.textContent = '⏳ Creating image...';
+
+            // Temporarily hide the button so it's not in the screenshot
+            button.style.display = 'none';
+
+            // Use html2canvas to convert the webpage to an image
+            html2canvas(container, {
+                scale: 2, // Higher quality (2x resolution)
+                backgroundColor: null, // Transparent background
+                logging: false, // Don't show debug messages
+                useCORS: true // Allow loading images from other domains
+            }).then(function(canvas) {
+                // Convert canvas to image data
+                const imageData = canvas.toDataURL('image/png');
+
+                // Create a temporary download link
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imageData;
+                downloadLink.download = 'HelenZuo-Profile.png'; // Default filename
+
+                // Trigger the download (browser will show save dialog)
+                downloadLink.click();
+
+                // Reset button back to normal
+                button.style.display = 'block';
+                button.classList.remove('loading');
+                button.textContent = '📥 Download Profile';
+
+                // Show success message
+                alert('✅ Profile image ready! Choose where to save it.');
+            }).catch(function(error) {
+                // If something goes wrong, show error
+                console.error('Error creating image:', error);
+                button.style.display = 'block';
+                button.classList.remove('loading');
+                button.textContent = '📥 Download Profile';
+                alert('❌ Oops! Something went wrong. Please try again.');
+            });
+        }
+
+        // ============== THEME SWITCHING FUNCTIONS ==============
+
+        // Load saved theme when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'purple';
+            const isDark = localStorage.getItem('darkMode') === 'true';
+
+            if (isDark) {
+                document.body.classList.add('theme-dark');
+                updateDarkModeButton();
+            } else if (savedTheme !== 'purple') {
+                changeTheme(savedTheme);
+            }
+        });
+
+        // Change color theme (purple, blue, green, pink, orange)
+        function changeTheme(themeName) {
+            const body = document.body;
+
+            // Remove all theme classes except dark mode
+            body.classList.remove('theme-blue', 'theme-green', 'theme-pink', 'theme-orange');
+
+            // Add new theme class (unless it's purple - the default)
+            if (themeName !== 'purple') {
+                body.classList.add('theme-' + themeName);
+            }
+
+            // Update active button highlight
+            const allButtons = document.querySelectorAll('.theme-btn');
+            allButtons.forEach(btn => btn.classList.remove('active'));
+
+            const activeButton = document.querySelector('.theme-btn-' + themeName);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Save theme to browser storage (so it remembers next time)
+            localStorage.setItem('theme', themeName);
+        }
+
+        // Toggle Dark Mode on/off
+        function toggleDarkMode() {
+            const body = document.body;
+            const isDark = body.classList.contains('theme-dark');
+
+            if (isDark) {
+                // Turn OFF dark mode
+                body.classList.remove('theme-dark');
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                // Turn ON dark mode
+                body.classList.add('theme-dark');
+                localStorage.setItem('darkMode', 'true');
+            }
+
+            updateDarkModeButton();
+        }
+
+        // Update the dark mode button text
+        function updateDarkModeButton() {
+            const button = document.querySelector('.dark-mode-toggle');
+            const isDark = document.body.classList.contains('theme-dark');
+
+            if (isDark) {
+                button.textContent = '☀️ Light Mode';
+            } else {
+                button.textContent = '🌙 Dark Mode';
+            }
+        }
+
+        // ============== MUSIC PLAYER FUNCTIONS (SIMPLIFIED) ==============
+
+        const audio = document.getElementById('backgroundMusic');
+        const musicIconBtn = document.getElementById('musicIconBtn');
+
+        // Set initial volume
+        audio.volume = 0.5; // 50% volume
+
+        // Simple toggle Play/Pause
+        function toggleMusic() {
+            if (audio.paused) {
+                // Play music
+                audio.play().then(() => {
+                    musicIconBtn.classList.add('rotating'); // Start rotation
+                    console.log('Music playing');
+                }).catch(error => {
+                    console.log('Play failed:', error);
+                    // Remove annoying alert - just log to console
+                });
+            } else {
+                // Pause music
+                audio.pause();
+                musicIconBtn.classList.remove('rotating'); // Stop rotation
+            }
+        }
+
+        // When music ends, restart (though we have loop enabled)
+        audio.addEventListener('ended', function() {
+            musicIconBtn.classList.remove('rotating');
+        });
+    </script>
+</body>
+</html>
